@@ -2,7 +2,6 @@
 #  HTMLを中心に、動的なページを作成する仕組み。
 #  Flaskでは、Jinja2というテンプレートエンジンを利用。
 from flask import Flask,render_template
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -35,8 +34,21 @@ def if_for():
         'g':'緑',
         'b':'青'
     }
-    return render_template('if_for.html',age=age,colors=colors,colors_dic=colors_dic)
+
+    from user import User
+    user = [
+        User(1,'a'),
+        User(2,'b'),
+        User(3,'c')
+    ]
+    return render_template('if_for.html',age=age,colors=colors,colors_dic=colors_dic,users=user)
+
+#img/js/css
+@app.route('/img_etc')
+def img_etc():
+    return render_template('img_etc.html')
 
 if __name__ == "__main__":
     app.run('0.0.0.0',80,debug=True)
+
 
