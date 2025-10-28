@@ -16,6 +16,8 @@
         [URL取得関数の書式]
          url_for(エンドポイント名 [, key=data])
     #}
-    <img src="{{ url_for('static', filename='') }}" alt="">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet" alt="">
+    <script src="{{ url_for('static', filename='js/sample.js') }}"></script>
 </body>
 </html>

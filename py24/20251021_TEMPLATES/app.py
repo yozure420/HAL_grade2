@@ -48,6 +48,11 @@ def if_for():
 def img_etc():
     return render_template('img_etc.html')
 
+#コンポーネント
+@app.route('/component')
+def component():
+    return render_template('component.html')
+
 if __name__ == "__main__":
     app.run('0.0.0.0',80,debug=True)
 
