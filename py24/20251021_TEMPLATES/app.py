@@ -51,7 +51,19 @@ def img_etc():
 #コンポーネント
 @app.route('/component')
 def component():
-    return render_template('component.html')
+    return render_template('component.html',key1=123)
+
+# レイアウト継承
+@app.route('/extends')
+def extends():
+    return render_template('extends.html')
+
+
+@app.route('/filter')
+def if_for():
+    age = 20
+    colors = ['r','g','b']
+    return render_template('filter.html',age=age,colors=colors)
 
 if __name__ == "__main__":
     app.run('0.0.0.0',80,debug=True)
