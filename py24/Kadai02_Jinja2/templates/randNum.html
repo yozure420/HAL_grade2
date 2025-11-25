@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>課題No.02 Flask Templates</h1>
+    <h2>Ex1 乱数</h2>
+    <p>{{ randNum }}</p>
+    
+    <ul>
+        <li><a href="{{ url_for('hello') }}">index</a></li>
+    </ul>
+    {% include 'component/link_to_index.html' %}
+</body>
+</html>

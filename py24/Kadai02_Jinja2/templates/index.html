@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>課題No.02 Flask Templates</title>
+  <style>
+    body {
+      font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      margin: 40px;
+      color: #111;
+      background: #fff;
+    }
+    h1 {
+      font-size: 64px;
+      line-height: 1;
+      font-weight: 800;
+      margin: 0 0 24px 0;
+      letter-spacing: -1px;
+    }
+    ul {
+      margin: 18px 0 0 0;
+      padding-left: 36px;
+    }
+    li {
+      margin: 10px 0;
+      font-size: 26px;
+    }
+    a {
+      color: #5b2ca6;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+    }
+    a:hover {
+      color: #3a1070;
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 36px; }
+      li  { font-size: 18px; }
+      body { margin: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>課題No.02 Flask Templates</h1>
+
+  <ul>
+    <li><a href="{{ url_for('get_randNum') }}">Ex1 乱数</a></li>
+    <li><a href="{{ url_for('get_template') }}">Ex2 ランダムメッセージ</a></li>
+    <li><a href="{{ url_for('get_randImg') }}">Ex3 ランダム画像</a></li>
+    <li><a href="{{ url_for('get_rand100') }}">Ex4 100連ガチャ</a></li>
+    <li><a href="{{ url_for('get_rand100_2') }}">Ex5 100連ガチャ+</a></li>
+    <li><a href="{{ url_for('get_layout') }}">Ex6 レイアウト継承</a></li>
+    <li><a href="{{ url_for('get_layout_inh') }}">Ex7 レイアウト継承&amp;商品一覧</a></li>
+    <li><a href="{{ url_for('get_op1') }}">Option1 レイアウト継承&amp;商品一覧(空対応) 要素あり</a></li>
+    <li><a href="{{ url_for('get_op2') }}">Option2 CSS</a></li>
+  </ul>
+</body>
+</html>

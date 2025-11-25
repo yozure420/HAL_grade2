@@ -1,0 +1,29 @@
+{% include 'component/layout_title.html' %}
+{% include 'component/layout_subtitle.html' %}
+Ex7 レイアウト継承&商品一覧
+<h2>Option1 レイアウト継承&商品一覧(空対応)</h2>
+{% if not kuji %}
+データが一件も登録されていません
+{% else %}
+<table>
+    <thead>
+        <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>単価</th>
+            <th>イメージ</th>
+        </tr>
+    </thead>
+</table>
+{%for i in kuji %}
+<table>
+    <tr>
+        <th>{{ i.id }}</th>
+        <th>{{ i.name }}</th>
+        <th>{{ i.price }}</th>
+        <th><img src="{{ url_for('static',filename=i.img) }}" alt="" height="200px"></th>
+    </tr>
+</table>
+{%  endfor %}
+{% endif %}
+{% include 'component/link_to_index.html' %}

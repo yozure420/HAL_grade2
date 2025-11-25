@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+    {% for i in randNum %}
+    {% if i==7 %}
+    <li style="color: red;">
+    {{ i }}</li>
+    {% else %}
+    <li>{{ i }}</li>
+    {%endif%}
+    {% endfor %}
+    </ul>
+    {% include 'component/link_to_index.html' %}
+</body>
+</html>

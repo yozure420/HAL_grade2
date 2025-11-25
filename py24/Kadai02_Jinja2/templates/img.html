@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if randNum==1 %}
+    <img src="../static/img/dai.png" alt="" height="100px">
+    {% elif randNum==2 %}
+    <img src="../static/img/kichi.png" alt="" height="100px">
+    {% else %}
+    <img src="../static/img/kyo.png" alt="" height="100px">
+    {% endif %}
+
+    {% include 'component/link_to_index.html' %}
+</body>
+</html>
