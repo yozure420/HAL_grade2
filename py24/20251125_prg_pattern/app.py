@@ -37,7 +37,6 @@ def products_prg():
 
 @app.route("/products_prg_create_complete")
 def products_prg_create_complete():
-    # return render_template("products_prg/create_complete.html")
     return render_template('products_prg/create_complete.html')
 
 if __name__ == "__main__":
