@@ -26,7 +26,19 @@ def index():
 def set_cookie():
     # レスポンスオブジェクト(イメージHTTPパケット)を生成する
     response = make_response(redirect(url_for('index')))
+    # Cookieを設定する。
+    # ※Cookieは、HTTP Headerに設定される。
+    response.set_cookie('id','123')
+
     return response
+
+@app.route("/check_cookie")
+def check_cookie():
+    #Cookieは、存在する場合、自動で送信される。
+    #※HTTP Headerに積まれる。
+    # request.cookiesで取得
+    print(request.cookies.get('id'))
+    return render_template('check_cookie.html')
 
 if __name__ == "__main__":
     app.run('0.0.0.0',80,True)
