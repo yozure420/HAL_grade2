@@ -23,20 +23,24 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-###############################################
+##################################################################################################
 @app.route('/.well-known/appspecific/com.chrome.devtools.json')
 def ignore_chrome_devtools():
     return ('', 204)
 #Chrome が DevTools の設定用 JSON を探す（拡張やデバッグ用）。ローカルサーバーでは 存在しないのが普通 なので、気にする必要はまったくない。
 #204 (No Content) を返すので、Chrome は成功扱いになるようにしたよ
+###################################################################################################
+
+
 @app.route('/set_cookie')
-#有効化すれば、永続化可能だが、デフォルトはブラウザを閉じたらCookieは消える
 def set_cookie():
+    #有効化すれば、永続化可能だが、デフォルトはブラウザを閉じたらCookieは消える
+    expires = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=20)
     # レスポンスオブジェクト(イメージHTTPパケット)を生成する
     response = make_response(redirect(url_for('index')))
     # Cookieを設定する。
     # ※Cookieは、HTTP Headerに設定される。
-    response.set_cookie('id','123')
+    response.set_cookie('id','123',expires=expires)
 
     return response
 
@@ -45,7 +49,6 @@ def check_cookie():
     #Cookieは、存在する場合、自動で送信される。
     #※HTTP Headerに積まれる。
     # request.cookiesで取得
-    print(request.cookies.get('id'))
     #厳密にチェックする場合↓
     if 'id' in request.cookies:
         print('Cokkieに保存:' + request.cookies.get('id'))
