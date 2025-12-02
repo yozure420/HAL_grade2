@@ -15,7 +15,7 @@
 #  ・セッション管理…セッションIDを保存し、繋がっている状態を実現する。
 #  ・設定情報の保存…ユーザーの設定情報を保存し、次回に適用する。
 #  ・トラッキング…ユーザーのブラウジング行動を保存し、追跡出来るようにする。
-#  ・CRRF対策 等々。
+#  ・CSRF対策 等々。
 from flask import Flask, render_template, redirect, url_for, request,make_response
 import datetime
 app = Flask(__name__)
