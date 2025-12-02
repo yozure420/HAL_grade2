@@ -17,12 +17,20 @@
 #  ・トラッキング…ユーザーのブラウジング行動を保存し、追跡出来るようにする。
 #  ・CRRF対策 等々。
 from flask import Flask, render_template, redirect, url_for, request,make_response
+import datetime
 app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template('index.html')
 
+###############################################
+@app.route('/.well-known/appspecific/com.chrome.devtools.json')
+def ignore_chrome_devtools():
+    return ('', 204)
+#Chrome が DevTools の設定用 JSON を探す（拡張やデバッグ用）。ローカルサーバーでは 存在しないのが普通 なので、気にする必要はまったくない。
+#204 (No Content) を返すので、Chrome は成功扱いになるようにしたよ
 @app.route('/set_cookie')
+#有効化すれば、永続化可能だが、デフォルトはブラウザを閉じたらCookieは消える
 def set_cookie():
     # レスポンスオブジェクト(イメージHTTPパケット)を生成する
     response = make_response(redirect(url_for('index')))
@@ -38,7 +46,18 @@ def check_cookie():
     #※HTTP Headerに積まれる。
     # request.cookiesで取得
     print(request.cookies.get('id'))
+    #厳密にチェックする場合↓
+    if 'id' in request.cookies:
+        print('Cokkieに保存:' + request.cookies.get('id'))
     return render_template('check_cookie.html')
+
+@app.route('/delete_cookie')
+def delete_cookie():
+    response = make_response(redirect(url_for('index')))
+    response.delete_cookie('id')
+    #削除の仕組みは、有効期限を過去日付にしている。
+
+    return response
 
 if __name__ == "__main__":
     app.run('0.0.0.0',80,True)
