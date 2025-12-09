@@ -30,7 +30,10 @@ app.config['SECRET_KEY'] = '3112b6a5be02fcc670abbc74da84bc0674bdb258f5e532bece5c
 # py -c 'import secrets;print(secrets.token_hex())' # Flack officialより
 # SECRET_KEYは、セッション情報暗号化のキー。セッション利用時はこの設定が必須。
 # print(app.config) で、設定情報一覧が確認できる。
-print(app.config)
+
+#セッションの有効期限変更
+app.permanent_session_lifetime = timedelta(seconds=5)
+
 @app.route('/.well-known/appspecific/com.chrome.devtools.json')
 def ignore_chrome_devtools():
     return ('', 204)
@@ -41,6 +44,11 @@ def index():
 
 @app.route('/start_session')
 def start_session():
+
+    #セッションの永続化
+    #※これを設定しないと、ブラウザを閉じると、
+    #セッションもcloseする。
+    session.permanent = True
     session['id'] = 456
     return redirect(url_for('index'))
 
@@ -60,7 +68,7 @@ def end_session():
     #第2引数の指定がなく、キーが存在しない場合、エラーになる
 
     #セッションの全削除はclear
-    session.clear()
+    # session.clear()
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
