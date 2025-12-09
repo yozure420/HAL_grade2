@@ -66,9 +66,9 @@ export const insert = async (posts) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         // TODO: SQL 文
         // users テーブルに name, email, password を挿入
-        const sql = '';
+        const sql = 'INSERT INTO users (name, email, password) VALUE (?,?,?)';
         // TODO: パラメータ配列
-        const params = [];
+        const params = [name, email,hashedPassword];
         // SQL 実行
         const [rows] = await pool.query(sql, params);
         // 結果返却 JSON
@@ -119,13 +119,13 @@ export const update = async (id, posts) => {
 export const auth = async (email, password) => {
     try {
         // ユーザー存在チェック
-        const existUser = findByEmail(email);
+        const existUser = await findByEmail(email);
         // パスワード照合
-        if (existUser && bcrypt.compareSync(password, existsUser.password)) {
+        if (existUser && await bcrypt.compareSync(password, existUser.password)) {
             return {
                 user: existUser,
                 sql: "",
-                errors,
+                errors:[],
             };
         } else {
             return {
