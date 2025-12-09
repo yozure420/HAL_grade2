@@ -56,6 +56,11 @@ def check_session():
 def end_session():
     #個別削除には、session.popを用いる
     session.pop('id',None)
+    #第2引数は、ない場合の戻り値
+    #第2引数の指定がなく、キーが存在しない場合、エラーになる
+
+    #セッションの全削除はclear
+    session.clear()
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
