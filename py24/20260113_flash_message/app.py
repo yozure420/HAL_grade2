@@ -26,5 +26,23 @@ def flash_message():
         flash('複数メッセージOK')
         return redirect(url_for('flash_message'))
 
+@app.route('/flash_category', methods=['GET','POST'])
+def flash_category():
+    if request.method == 'GET':
+        return render_template('flash_category.html')
+    else:
+        #Flash categoryの登録
+        flash('一度だけ表示')   #規定はmessage
+        flash('複数メッセージOK', 'success')
+        flash('エラー','danger')
+        # カテゴリーは自由に命名できるが、以下の４つが一般的。
+        # ・success(成功)
+        # ・info(情報/通知)
+        # ・warning(警告)
+        # ・danger/error(エラー)
+        # ※dangerはBootstrap利用時に用いられる。
+
+        return redirect(url_for('flash_category'))
+
 if __name__ == '__main__':
     app.run(debug=True)
